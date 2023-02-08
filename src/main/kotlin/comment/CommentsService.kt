@@ -21,8 +21,7 @@ class CommentsService(
             .let {
                 CommentsCollection(
                     collectionKey = collectionKey,
-                    elements = it
-                        .mapAsync(::makeCommentElement)
+                    elements = it.mapAsync(::makeCommentElement)
                 )
             }
     }
