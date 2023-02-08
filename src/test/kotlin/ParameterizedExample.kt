@@ -75,6 +75,13 @@ class ParameterizedExample {
     }
 
     @ParameterizedTest
+    @MethodSource("ArgumentProviders#uppercaseQuestionsAndAnswers")
+    fun testUppercaseFromExternalProvider(input: String, expected: String?) {
+        val actualValue = input.uppercase()
+        assertEquals(expected, actualValue)
+    }
+
+    @ParameterizedTest
     @ArgumentsSource(UppercaseArgumentsProvider::class)
     fun testUppercaseFromSource(input: String, expected: String?) {
         val actualValue = input.uppercase()
@@ -98,3 +105,12 @@ class ParameterizedExample {
     }
 }
 
+object ArgumentProviders {
+    @JvmStatic
+    fun uppercaseQuestionsAndAnswers() = listOf(
+        Arguments.of("aleX", "ALEX"),
+        Arguments.of("John", "JOHN"),
+        Arguments.of(" s a", " S A"),
+        Arguments.of("ALA", "ALA")
+    )
+}
