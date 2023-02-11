@@ -1,4 +1,6 @@
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
 import kotlin.test.assertEquals
 
 class GildedRoseTest {
@@ -59,24 +61,12 @@ class GildedRoseTest {
         assertEquals(agedBrie(-1, 50), items[0])
     }
 
-    @Test
-    fun `sulfuras never should be sold or decrased in Quality case Expired`() {
-        `"Sulfuras", being a legendary item, never has to be sold or decreases in Quality`(0, 5)
-    }
+    @ParameterizedTest(name = "case {2}")
+    @CsvSource("0,5,Expired", "1,2,Not Expired", "1,50,Maximum Normal Quality", "1,80,Maximum Quality")
+    fun `sulfuras never should be sold or decreased in Quality case`(sellIn: Int, quality: Int) {
+        val items = updateQualityTo(listOf(sulfuras(sellIn, quality)))
 
-    @Test
-    fun `sulfuras never should be sold or decrased in Quality case Not Expired`() {
-        `"Sulfuras", being a legendary item, never has to be sold or decreases in Quality`(1, 2)
-    }
-
-    @Test
-    fun `sulfuras never should be sold or decrased in Quality case Maximum Normal Quality`() {
-        `"Sulfuras", being a legendary item, never has to be sold or decreases in Quality`(1, 50)
-    }
-
-    @Test
-    fun `sulfuras never should be sold or decrased in Quality case Maximum Quality`() {
-        `"Sulfuras", being a legendary item, never has to be sold or decreases in Quality`(1, 80)
+        assertEquals(sulfuras(sellIn, quality), items[0])
     }
 
     @Test
@@ -108,11 +98,6 @@ class GildedRoseTest {
         val items = updateQualityTo(listOf(backstagePass(0, 30)))
 
         assertEquals(backstagePass(-1, 0), items[0])
-    }
-
-    private fun `"Sulfuras", being a legendary item, never has to be sold or decreases in Quality`(sellIn: Int, quality: Int) {
-        val items = updateQualityTo(listOf(sulfuras(sellIn, quality)))
-        assertEquals(sulfuras(sellIn, quality), items[0])
     }
 
     private fun anItem(sellIn: Int, quality: Int) = Item("anItem", sellIn, quality)
