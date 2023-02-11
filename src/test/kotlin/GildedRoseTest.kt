@@ -9,7 +9,7 @@ class GildedRoseTest {
     fun `should Lower SellIn and Quality of item at the end of each day`() {
         val result = updateQualityTo(listOf(anItem(3, 5)))
 
-        assertEquals(anItem(2, 4), result[0])
+        assertEquals(anItem(2, 4), result.single())
     }
 
     @Test
@@ -30,35 +30,35 @@ class GildedRoseTest {
     fun `should Quality be never negative`() {
         val items = updateQualityTo(listOf(anItem(10, 0)))
 
-        assertEquals(anItem(9, 0), items[0])
+        assertEquals(anItem(9, 0), items.single())
     }
 
     @Test
     fun `should Quality decrease twice if the item is expired`() {
         val items = updateQualityTo(listOf(anItem(0, 2)))
 
-        assertEquals(anItem(-1, 0), items[0])
+        assertEquals(anItem(-1, 0), items.single())
     }
 
     @Test
     fun `aged brie actually increases when a day passes by`() {
         val items = updateQualityTo(listOf(agedBrie(1, 2)))
 
-        assertEquals(3, items[0].quality)
+        assertEquals(3, items.single().quality)
     }
 
     @Test
     fun `aged brie actually increases double fast when a day passes by and the product is expired`() {
         val items = updateQualityTo(listOf(agedBrie(0, 2)))
 
-        assertEquals(agedBrie(-1, 4), items[0])
+        assertEquals(agedBrie(-1, 4), items.single())
     }
 
     @Test
     fun `Quality should never be larger than 50`() {
         val items = updateQualityTo(listOf(agedBrie(0, 50)))
 
-        assertEquals(agedBrie(-1, 50), items[0])
+        assertEquals(agedBrie(-1, 50), items.single())
     }
 
     @ParameterizedTest(name = "case {2}")
@@ -66,7 +66,7 @@ class GildedRoseTest {
     fun `sulfuras never should be sold or decreased in Quality case`(sellIn: Int, quality: Int) {
         val items = updateQualityTo(listOf(sulfuras(sellIn, quality)))
 
-        assertEquals(sulfuras(sellIn, quality), items[0])
+        assertEquals(sulfuras(sellIn, quality), items.single())
     }
 
     @Test
@@ -74,7 +74,7 @@ class GildedRoseTest {
         val x = 30
         val items = updateQualityTo(listOf(backstagePass(11, x)))
 
-        assertEquals(backstagePass(10, x + 1), items[0])
+        assertEquals(backstagePass(10, x + 1), items.single())
     }
 
     @Test
@@ -82,7 +82,7 @@ class GildedRoseTest {
         val x = 30
         val items = updateQualityTo(listOf(backstagePass(10, x)))
 
-        assertEquals(backstagePass(9, x + 2), items[0])
+        assertEquals(backstagePass(9, x + 2), items.single())
     }
 
     @Test
@@ -90,14 +90,14 @@ class GildedRoseTest {
         val x = 30
         val items = updateQualityTo(listOf(backstagePass(5, x)))
 
-        assertEquals(backstagePass(4, x + 3), items[0])
+        assertEquals(backstagePass(4, x + 3), items.single())
     }
 
     @Test
     fun `backstage passes increases quality when SellIn value approaches -  Expired`() {
         val items = updateQualityTo(listOf(backstagePass(0, 30)))
 
-        assertEquals(backstagePass(-1, 0), items[0])
+        assertEquals(backstagePass(-1, 0), items.single())
     }
 
     private fun anItem(sellIn: Int, quality: Int) = Item("anItem", sellIn, quality)
