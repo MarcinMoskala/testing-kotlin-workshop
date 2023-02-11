@@ -49,6 +49,6 @@ class AssertJExamples {
             .extracting("name", "profession")
             .contains(tuple("Geralt", "Witcher"),
                 tuple("Dandelion", "Bard"),
-                tuple("Triss", "Wizard"));
+                tuple("Triss", "Wizard"))
     }
 }
