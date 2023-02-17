@@ -11,7 +11,7 @@ import java.time.Instant
 class ObserveAppointmentsUseCase(
     private val appointmentsRepository: AppointmentsRepository
 ) {
-    // should observe only updated
+    // should observe only updates
     // should ignore repeating values
     // should retry API exception
     // should not retry API exception with incorrect code
