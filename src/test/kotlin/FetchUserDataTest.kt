@@ -30,7 +30,7 @@ class FetchUserUseCase(
 class FetchUserDataTest {
 
     @Test
-    fun `should load data concurrently`() = runTest {
+    fun `should load data concurrently`(): Unit = runTest {
         // given
         val userRepo = FakeUserDataRepository()
         val useCase = FetchUserUseCase(userRepo)
@@ -43,7 +43,7 @@ class FetchUserDataTest {
     }
 
     @Test
-    fun `should construct user`() = runTest {
+    fun `should construct user`(): Unit = runTest {
         // given
         val userRepo = FakeUserDataRepository()
         val useCase = FetchUserUseCase(userRepo)

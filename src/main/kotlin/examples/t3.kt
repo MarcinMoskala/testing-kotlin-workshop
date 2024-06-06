@@ -9,7 +9,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.currentTime
 import kotlinx.coroutines.test.runTest
 
-fun main() = runTest {
+fun main(): Unit = runTest {
     println(currentTime)
     coroutineScope {
         launch { delay(1000) }

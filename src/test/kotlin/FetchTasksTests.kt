@@ -11,17 +11,17 @@ class FetchTasksTests {
     private val someException = ApiException(500, "Some exception")
 
     @Test
-    fun `should resume with result`() = runTest {
+    fun `should resume with result`(): Unit = runTest {
         // todo
     }
 
     @Test
-    fun `should resume with exception`() = runTest {
+    fun `should resume with exception`(): Unit = runTest {
         // todo
     }
 
     @Test
-    fun `should support cancellation`() = runTest {
+    fun `should support cancellation`(): Unit = runTest {
         // todo
     }
 

@@ -14,17 +14,17 @@ class CommentServiceTests {
     @Nested
     inner class AddComment {
         @Test
-        fun `Should add comment`() = runTest {
+        fun `Should add comment`(): Unit = runTest {
 
         }
 
         @Test
-        fun `Should give next ids to consecutive comments`() = runTest {
+        fun `Should give next ids to consecutive comments`(): Unit = runTest {
 
         }
 
         @Test
-        fun `Should specify correct creation time`() = runTest {
+        fun `Should specify correct creation time`(): Unit = runTest {
 
         }
     }
@@ -32,7 +32,7 @@ class CommentServiceTests {
     @Nested
     inner class GetComments {
         @Test
-        fun `Should get comments by collection key`() = runTest {
+        fun `Should get comments by collection key`(): Unit = runTest {
 
         }
     }
@@ -40,22 +40,22 @@ class CommentServiceTests {
     @Nested
     inner class DeleteComment {
         @Test
-        fun `Should delete comment by id`() = runTest {
+        fun `Should delete comment by id`(): Unit = runTest {
 
         }
 
         @Test
-        fun `Should throw exception when comment does not exist`() = runTest {
+        fun `Should throw exception when comment does not exist`(): Unit = runTest {
 
         }
 
         @Test
-        fun `Should throw exception when user is not an owner`() = runTest {
+        fun `Should throw exception when user is not an owner`(): Unit = runTest {
 
         }
 
         @Test
-        fun `Should concurrently find users when getting comments`() = runTest {
+        fun `Should concurrently find users when getting comments`(): Unit = runTest {
             // We will do that later
         }
     }
