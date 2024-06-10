@@ -9,13 +9,15 @@ import org.junit.jupiter.api.extension.RegisterExtension
 
 @ExtendWith(TestExtension::class)
 class LifecycleExtensionsExample {
-    @JvmField
-    @RegisterExtension
-    var extension = TestExtension("custom")
-
     @Test
     fun test() {
         println("Actual test (param is ${extension.valueToSetup})")
+    }
+    
+    companion object {
+        @JvmField
+        @RegisterExtension
+        var extension = TestExtension("custom")
     }
 }
 
