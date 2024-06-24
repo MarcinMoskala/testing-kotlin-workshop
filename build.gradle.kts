@@ -1,8 +1,13 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.7.20"
+    kotlin("jvm") version "2.0.0"
     application
+    kotlin("plugin.power-assert") version "2.0.0"
+}
+
+powerAssert {
+    functions.set(listOf("kotlin.assert", "kotlin.test.assertEquals"))
 }
 
 group = "academy.kt"

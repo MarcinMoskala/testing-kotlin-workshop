@@ -38,7 +38,8 @@ class AssertJExamples {
         assertThat(characters).containsAll(listOf(dandelion, triss))
         assertThat(characters).containsAnyOf(nonCharacter, triss)
 
-        assertThat(characters).filteredOn { it.profession == "Bard" }
+        assertThat(characters)
+            .filteredOn { it.profession == "Bard" }
             .hasSize(1)
             .containsExactly(dandelion)
     }
@@ -47,8 +48,10 @@ class AssertJExamples {
     fun extracting() {
         assertThat(characters)
             .extracting("name", "profession")
-            .contains(tuple("Geralt", "Witcher"),
+            .contains(
+                tuple("Geralt", "Witcher"),
                 tuple("Dandelion", "Bard"),
-                tuple("Triss", "Wizard"))
+                tuple("Triss", "Wizard")
+            )
     }
 }

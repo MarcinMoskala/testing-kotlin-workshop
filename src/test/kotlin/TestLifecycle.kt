@@ -49,13 +49,28 @@ class TestLifecycle {
     }
 
     @TestFactory
-    fun testsFiveAndSix(): List<DynamicTest> = listOf("five", "six")
+    fun testsFiveAndSix(): List<DynamicTest> = List(100) { "Name$it" }
         .map { name ->
             DynamicTest.dynamicTest("testCalc${name.replaceFirstChar { it.titlecase() }}") {
                 println("======TEST ${name.uppercase()} EXECUTED=======")
                 assertEquals(15, Math.addExact(5, 10))
             }
         }
+    
+    @TestFactory
+    fun `square should produce valid result for small numbers`(): List<DynamicTest> = mapOf(
+        1 to 1,
+        2 to 4,
+        3 to 9,
+        4 to 16
+    ).map { (num, expectedResult) ->
+        DynamicTest.dynamicTest("Square of $num should be $expectedResult") {
+            assertEquals(expectedResult, i(num))
+        }
+    }
+
+    private fun i(num: Int) = num * num
+
 
     companion object {
         @JvmStatic

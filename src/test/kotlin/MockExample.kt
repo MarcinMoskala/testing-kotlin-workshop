@@ -141,7 +141,6 @@ class MockExample {
             },
             mockk {
                 every { random() } returns aUuid
-
             },
             commentRepository
         )
